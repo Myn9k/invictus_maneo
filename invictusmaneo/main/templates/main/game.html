@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'main/game.css' %}">
+    <link rel="stylesheet" href="{% static 'main/question.css' %}">
+    <title>main</title>
+    <style>
+      .end{
+            display:block;
+            position: fixed;
+            z-index: 1;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 60px 10px rgba(0, 0, 0, 0.9);
+        }
+
+        .end-content{
+            background-color: #333;
+            margin: 10% auto;
+            padding: 20px;
+            border: 1.5px solid #888;
+            width: 65%;
+            height: 65%;
+            color: yellow;
+            box-shadow: 0 0 60px 10px rgba(0, 0, 0, 0.9);
+        }
+    </style>
+
+</head>
+<body style="background-image: url({{im.images.url}});">
+    <div class="container">
+        <div class="row">
+            <div class="col" >
+                <h1 class="yellow-text-with-black-shadow">{{el.name}}  {{el.surname}}</h1>
+            </div>
+            <div class="col" >
+                <h1 class="yellow-text">Ваше количество очков:</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col colbtn text-left">
+                <button href="#" class="btn btn-lg btn-light" role="button" style="width: 25rem;">Настройки</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col colbtn text-left">
+                <button href="#" class="btn btn-lg btn-primary" role="button" style="width: 25rem;">Рейтинг игроков</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col colbtn text-left">
+                <button id="myBTN" class="btn btn-lg btn-danger" role="button" style="width: 25rem;">Ответить на вопросы</button>
+            </div>
+        </div>
+        <div class="row">
+             <audio id="myAudio">
+                <source src="{{aud.audio.url}}">
+             </audio>
+            <div id="myModal" class="modal">
+                <div class="modal-content">
+                    <b><h1 class="container">{{que.question}}</h1></b>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="input1">
+                        <label class="form-check-label" id="answer" for="flexRadioDefault1">{{que.answer}}</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="input2">
+                        <label class="form-check-label" id="wrongAnswer1" for="flexRadioDefault1">{{que.answerwrong1}}</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="input3">
+                        <label class="form-check-label" id="wrongAnswer2" for="flexRadioDefault1">{{que.answerwrong2}}</label>
+                    </div>
+                    <center><button id="asnBTN" class="btn btn-lg btn-dark" type="reset" >Ответить</button></center>
+                    </div>
+                </div>
+            </div>
+            <script src="{% static 'main/question.js' %}"></script>
+        </div>
+        {% if count_id == 10 %}
+         <div>
+            <div class="end">
+                <div class="end-content">
+                    <p style="font-size: 50px; text-align: center; margin-top: 200px; ">Молодец! Ты настоящий богатырь!</p>
+                </div>
+            </div>
+         </div>
+        {% endif %}
+    </div>
+</body>
+</html>
